@@ -16,5 +16,4 @@ WORKDIR /opt/shaka_packager
 RUN gclient config https://www.github.com/google/shaka-packager.git --name=src
 RUN gclient sync --no-history -r v2.1.1
 RUN cd src && ninja -C out/Release
-VOLUME /output
-ENTRYPOINT ["cp", "/opt/shaka_packager/out/Release/packager", "/output/packager"]
+ENTRYPOINT ["cp", "/opt/shaka_packager/src/out/Release/packager", "/output/packager"]
