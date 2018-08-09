@@ -5,6 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # update, and install basic packages
 RUN apt-get update
 RUN apt-get install -y build-essential curl git python
+RUN apt-get -y clean
+RUN rm -r /var/lib/apt/lists/*
 
 # install depot_tools http://www.chromium.org/developers/how-tos/install-depot-tools
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
