@@ -17,5 +17,8 @@ RUN mkdir /opt/shaka_packager
 WORKDIR /opt/shaka_packager
 RUN gclient config https://www.github.com/google/shaka-packager.git --name=src
 RUN gclient sync --no-history -r v2.1.1
-RUN cd src && ninja -C out/Release
-ENTRYPOINT ["cp", "/opt/shaka_packager/src/out/Release/packager", "/output/packager"]
+RUN mkdir -p /opt/packager
+RUN cd src && ninja -C /opt/shaka_packager/src/out/Release
+RUN mkdir -p /opt/shaka_packager/bin
+RUN cp /opt/shaka_packager/src/out/Release/packager /opt/shaka_packager/bin/packager
+ENV PATH /opt/shaka_packager/bin:$PATH
