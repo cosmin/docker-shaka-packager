@@ -9,7 +9,7 @@ RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git &
     mkdir /opt/shaka_packager_build && \
     cd /opt/shaka_packager_build && \
     PATH=/depot_tools:$PATH gclient config https://www.github.com/google/shaka-packager.git --name=src && \
-    PATH=/depot_tools:$PATH gclient sync --no-history -r v2.1.1 && \
+    PATH=/depot_tools:$PATH gclient sync --no-history -r v2.2.0 && \
     mkdir -p /opt/packager/bin /opt/packager/lib && \
     cd src && ninja -C /opt/shaka_packager_build/src/out/Release && \
     mkdir -p /opt/packager/bin /opt/packager/lib && \
