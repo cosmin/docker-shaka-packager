@@ -2,10 +2,14 @@
 all: docker
 
 .PHONY: docker
-docker:
-	docker build -t shaka-packager:latest .
+stable:
+	$(eval VERSION=stable)
+	docker build -t shaka-packager:$(VERSION) .
+experimental:
+	$(eval VERSION=experimental)
+	docker build --build-arg shaka_packager_version=master -t shaka-packager:$(VERSION) .
 
 .PHONY: push
 push: docker
-	docker tag shaka-packager:latest offbytwo/shaka-packager:latest
-	docker push offbytwo/shaka-packager:latest
+	docker tag shaka-packager:$(VERSION) offbytwo/shaka-packager:$(VERSION)
+	docker push offbytwo/shaka-packager:$(VERSION)
